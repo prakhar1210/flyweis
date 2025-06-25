@@ -1,0 +1,83 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard Client Test</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+  <h1>Leaderboard Client Test</h1>
+  <script>
+    const socket = io("http://localhost:5000");
+
+    socket.on("connect", () => {
+      console.log("✅ Connected to backend");
+      
+      // Send score update
+      socket.emit("updateScore", {
+        playerId: "prakhar001",
+        score: 150,
+        region: "IN",
+        gameMode: "solo"
+      });
+
+      // Request top players
+      socket.emit("getTopPlayers", { region: "IN", gameMode: "solo", count: 5 });
+
+      // Listen for leaderboard updates
+      socket.on("leaderboardUpdate", (data) => {
+        console.log("📊 Leaderboard Update:", data);
+      });
+    });
+
+    socket.on("disconnect", () => {
+      console.log("❌ Disconnected from backend");
+    });
+  </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard Test Client</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+  <h1>Leaderboard Client Test</h1>
+  <script>
+    const socket = io("http://localhost:5000");
+
+    socket.on("connect", () => {
+      console.log("✅ Connected to backend");
+
+      // Send an initial test score
+      socket.emit("updateScore", {
+        playerId: "prakhar001",
+        score: 200,
+        region: "IN",
+        gameMode: "solo"
+      });
+
+      // Fetch top 5 players
+      socket.emit("getTopPlayers", {
+        region: "IN",
+        gameMode: "solo",
+        count: 5
+      });
+    });
+
+    socket.on("leaderboardUpdate", (data) => {
+      console.log("📊 Leaderboard Update:", data);
+    });
+
+    socket.on("disconnect", () => {
+      console.log("❌ Disconnected from backend");
+    });
+  </script>
+</body>
+</html>
